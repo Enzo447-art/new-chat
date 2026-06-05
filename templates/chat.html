@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ server_name }} - Discord Clone</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app">
+        <!-- Même structure que index.html -->
+        <div class="server-bar">
+            <div class="server-icon home" onclick="window.location.href='/'">🏠</div>
+            <div class="server-icon active">🎮</div>
+        </div>
+
+        <div class="sidebar">
+            <div class="server-header">
+                <h2>{{ server_name }}</h2>
+            </div>
+            <div class="channels">
+                <div class="channel active"># général</div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="chat-header">
+                <h3># général - {{ server_name }}</h3>
+            </div>
+            <div class="chat-area" id="chat-area">
+                {% for msg in messages %}
+                <div class="message">
+                    <strong>{{ msg.author }}</strong> <small>{{ msg.time }}</small><br>
+                    {{ msg.content }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="message-input">
+                <input type="text" id="message-input" placeholder="Envoyer un message..." onkeypress="if(event.key === 'Enter') sendMessage()">
+                <button onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

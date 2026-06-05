@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Clone</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app">
+        <!-- Barre Serveurs -->
+        <div class="server-bar">
+            <div class="server-icon home active" onclick="switchServer('Accueil')">🏠</div>
+            {% for server in servers %}
+            <div class="server-icon" onclick="switchServer('{{ server }}')">{{ server[0] }}</div>
+            {% endfor %}
+            <div class="server-icon create" onclick="createServer()">+</div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="server-header">
+                <h2 id="server-name">Accueil</h2>
+            </div>
+            <div class="nav">
+                <a href="/" class="nav-item active">💬 Chat</a>
+                <a href="/friends" class="nav-item">👥 Amis</a>
+                <a href="#" class="nav-item">📞 Appels</a>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="main">
+            <div class="chat-header">
+                <h3># général</h3>
+            </div>
+            <div class="chat-area" id="chat-area">
+                <!-- Messages chargés via JS -->
+            </div>
+            <div class="message-input">
+                <input type="text" id="message-input" placeholder="Envoyer un message..." onkeypress="if(event.key === 'Enter') sendMessage()">
+                <button onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amis - Discord Clone</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app">
+        <div class="server-bar">
+            <div class="server-icon home active" onclick="window.location.href='/'">🏠</div>
+        </div>
+        <div class="sidebar">
+            <h2>👥 Amis</h2>
+        </div>
+        <div class="main">
+            <div class="chat-header"><h3>Amis en ligne</h3></div>
+            <div class="friends-list">
+                {% for friend in friends %}
+                <div class="friend-item">
+                    🟢 {{ friend }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
